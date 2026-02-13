@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Valentine ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at top, #ff9bb3, #ff4d6d);
+      overflow-x: hidden;
+      color: white;
+      text-align: center;
+    }
+    header {
+      padding: 80px 20px 40px;
+      font-size: 2.5rem;
+      font-weight: bold;
+      animation: fadeIn 2s ease forwards;
+    }
+    p.subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      margin-bottom: 40px;
+      animation: fadeIn 3s ease forwards;
+    }
+    button {
+      background: white;
+      color: #ff4d6d;
+      border: none;
+      padding: 12px 22px;
+      margin: 10px;
+      border-radius: 999px;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    button:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 20px rgba(0,0,0,0.25);
+    }
+    #letter {
+      max-width: 600px;
+      margin: 30px auto;
+      padding: 20px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 16px;
+      display: none;
+      animation: fadeIn 1s ease forwards;
+      min-height: 120px;
+    }
+    canvas {
+      position: fixed;
+      left: 0;
+      top: 0;
+      pointer-events: none;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px,1fr));
+      gap: 15px;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+      transform: scale(0.95);
+      transition: transform 0.3s;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px);} 
+      to { opacity: 1; transform: translateY(0);} 
+    }
+  </style>
+</head>
+<body>
+  <audio id="bgm" src="music.mp3" loop autoplay></audio>
+
+  <canvas id="hearts"></canvas>
+  <header>💖 Happy Valentine Day 💖 14/2 💖</header>
+  <p class="subtitle">Một món quà nhỏ dành riêng cho cậu</p>
+
+  <div>
+    <button onclick="showLetter()">💌 Mở thư</button>
+    <button onclick="spawnHearts()">❤️ Thả tim</button>
+  </div>
+
+  <div id="letter">
+    <h2>Gửi Hoàng Thị Quỳnh Hương,</h2>
+    <p id="typed"></p>
+  </div>
+
+  <!-- <div class="gallery">
+    <img src="image/img1.png" alt="">
+  </div> -->
+
+  <script>
+    const text = "💕Nhân dịp 14/2, chúc cậu một ngày Valentine thật vui vẻ và hạnh phúc nhé. Hì, mình hơi nhát nên dùng cách này để bày tỏ lòng mình một chút. Mình muốn nói rằng mình thích cậu; mình cảm thấy cậu dễ thương, đáng yêu một cách lạ kì; mình thích từ cách cậu đối xử với mình, và cả với mọi người nữa: cậu tử tế, thân thiện, dễ thương. Ấn tượng lớn nhất, sâu sắc nhất, khắc ghi vào trái tim mình nhất là vào đợt mình ốm năm lớp 7. Không biết cậu còn nhớ không, nhưng mình thì nhớ rõ lắm, lúc đấy đang trên lớp học thì tự nhiên mình lên cơn sốt. Lúc đó mình mệt lắm, đầu cứ đau và nặng trịch, không suy nghĩ được gì, rồi mình nằm gục xuống bàn. Lúc đó cậu đã rờ tay lên trán kiểu check xem mình có sốt không ấy, rồi cậu mượn được lọ dầu phật linh, đưa cho mình rồi chỉ cho mình thoa lên thái dương, xoa xoa. Có lẽ lúc đó cậu thấy mình không biết thoa dầu thế nào nên đã hỏi: 'Chứ bình thường ai thoa cho m'. Thì lần đó cũng là lần đầu tiên mình cảm thấy dc quan tâm bởi một người ngoài gia đình mình như vậy, chứ bình thường ở nhà là mình thấy đau đầu, thấy mệt là lên giường nằm ngủ rùi đó kaka. Lần đó cũng đã để lại trong lòng mình một dấu ấn, ấn tượng mạnh nhất luôn. Mình thích cậu; mình thích được ngắm nhìn cậu (tại mê á); mình muốn được ở bên cậu, muốn được gặp cậu mỗi ngày; muốn dc yêu thương, quan tâm cậu; muốn được làm người tâm sự, làm một nơi cậu có thể chia sẻ, nói ra những cảm xúc cả tích cực lẫn tiêu cực. Mình muốn được xuất hiện trong trái tim cậu, muốn được là một phần trong cuộc sống của cậu, muốn sánh bước đi cùng cậu trên các đoạn đường tiếp theo của cuộc đời. Nay đã là năm cuối mình còn có thể gặp cậu, có thể ngắm nhìn cậu mỗi ngày nên mình không muốn bỏ lỡ, nên mình quyết định bày tỏ lòng mình tại đây.💕Vì thiếu ngôn từ, mình không biết làm sao để bày tỏ tình cảm của mình với cậu thêm nữa, chỉ có thể viết đến đây thôi hihi. 💝Cảm ơn Hương vì đã đọc hết bức thư này, mong rằng dù thế nào đi nữa, chúng ta vẫn luôn trở nên tốt hơn ngày hôm qua!❤️‍🔥💝";
+    let idx = 0;
+
+    function typeEffect(){
+      if(idx < text.length){
+        document.getElementById('typed').textContent += text.charAt(idx);
+        idx++;
+        setTimeout(typeEffect, 10);
+      }
+    }
+
+    function explode(x,y){
+      for(let i=0;i<30;i++){
+        hearts.push({
+          x:x,
+          y:y,
+          vx:(Math.random()-0.5)*6,
+          vy:(Math.random()-0.5)*6,
+          size:6+Math.random()*6,
+          life:60
+        });
+      }
+    }
+
+    function showLetter(){
+      const box = document.getElementById('letter');
+      box.style.display='block';
+      if(idx===0) typeEffect();
+      spawnHearts();
+      explode(window.innerWidth/2, window.innerHeight/2);
+      document.getElementById('bgm').play().catch(()=>{});
+    }
+
+    const canvas = document.getElementById('hearts');
+    const ctx = canvas.getContext('2d');
+    let hearts = [];
+    function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight}
+    window.onresize=resize;resize();
+
+    function spawnHearts(){
+      for(let i=0;i<20;i++){
+        hearts.push({x:Math.random()*canvas.width,y:canvas.height+20,vx:0,vy:-1-Math.random()*2,size:10+Math.random()*10,life:200});
+      }
+    }
+
+    function drawHeart(x,y,size){
+      ctx.beginPath();
+      ctx.moveTo(x,y);
+      ctx.bezierCurveTo(x-size,y-size,x-2*size,y+size,x,y+2*size);
+      ctx.bezierCurveTo(x+2*size,y+size,x+size,y-size,x,y);
+      ctx.fillStyle='rgba(255,255,255,0.9)';
+      ctx.fill();
+    }
+
+    function animate(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      hearts.forEach(h=>{
+        h.x += h.vx;
+        h.y += h.vy;
+        h.life--;
+        drawHeart(h.x,h.y,h.size/2);
+      });
+      hearts = hearts.filter(h=>h.life>0);
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    window.addEventListener('click',e=>explode(e.clientX,e.clientY));
+  </script>
+</body>
+</html>
